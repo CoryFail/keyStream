@@ -29,6 +29,16 @@ Features
 - Custom categories and genres under the categories.
 - Easily upload large video files by copying to uploads folder.
 
+Installation
+=========
+
+Install Railo to your home network and upload this application to the web directory. Point your browser to the applications index and it will install the data and upload folder.
+
+Default Login:
+
+Username: admin
+Password: Password
+
 Uploading
 =========
 
@@ -37,6 +47,11 @@ There are two options to upload your videos.
 For large files (Over 200 MB) you simply place your video into the uploads folder. You will then need to login to the admin dashboard where it will prompt you to upload the files. Once uploaded you can see them in your video area.
 
 For smaller uploads you can use the Quick Uploader in the admin dashboard.
+
+Commercial Users
+=========
+
+This application is meant for home networks, the open source keyStream is does not have the best security for commercial use. I am working on a closed source solution specifically for commerical users. If you do decide to apply this to a commercial network, please use caution.
 
 To do
 =========
