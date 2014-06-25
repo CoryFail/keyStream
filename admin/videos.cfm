@@ -31,10 +31,15 @@ along with keyStream.  If not, see <http://www.gnu.org/licenses/>.
 			<cfif URL.e GT "">
 				<div class="one">
 					<cfif isDefined('FORM.vTitle')>
-						<cfset videoData.put(URL.e, FORM.vCategory, FORM.vGenre, FORM.vTitle, FORM.vDescription, FORM.vRating) />
-						<script>
-							alert("#FORM.vTitle# has been updated!");
-						</script>
+                        <cftry>
+                            <cfset videoData.put(URL.e, FORM.vCategory, FORM.vGenre, FORM.vTitle, FORM.vDescription, FORM.vRating) />
+                            <script>
+                                alert("#FORM.vTitle# has been updated!");
+                            </script>
+                            <cfcatch>
+                                <cflog application="true" log="Application" type="error" text="#cfcatch.message#" />
+                            </cfcatch>
+                        </cftry>
 					</cfif>
 					<cfif isDefined('FORM.thumbUpload')>
 						<cftry>
@@ -57,6 +62,7 @@ along with keyStream.  If not, see <http://www.gnu.org/licenses/>.
 								window.location = "videos.cfm?e=#URL.e#";
 							</script>
 							<cfcatch>
+                                <cflog application="true" log="Application" type="error" text="#cfcatch.message#" />
 								<script>
 									alert("Error: Please be sure you are uploading an image.");
 									window.location = "videos.cfm?e=#URL.e#";
@@ -129,20 +135,33 @@ along with keyStream.  If not, see <http://www.gnu.org/licenses/>.
 				</div>
 			<cfelse>
 				<cfif URL.d GT "">
-					<cfset DirectoryDelete(APPLICATION.uploadsDirectory & URL.d,true)>
-					<script>
-						alert("The video has been deleted!");
-					</script>
+                    <cftry>
+                        <cfset DirectoryDelete(APPLICATION.uploadsDirectory & URL.d,true)>
+                        <script>
+                            alert("The video has been deleted!");
+                        </script>
+                        <cfcatch>
+                            <script>
+                                alert("There was an error while deleting this video.");
+                            </script>
+                            <cflog application="true" log="Application" type="error" text="#cfcatch.message#" />
+                        </cfcatch>
+                    </cftry>
 				</cfif>
 				<cfdirectory action="list" directory="#application.uploadsDirectory#" name="qVideos" />
 				<div class="one-half">
 					<h1 class="title">Active Videos</h1>
 					<ul class="colored-counter-list">
 						<cfloop query="qVideos">
-							<cfset aVideo = videoData.get(name) />
-							<li>
-								<cfif FileExists(ExpandPath("../data/videos/#name#/thumbnails/large.jpg"))><img src="../data/videos/#name#/thumbnails/large.jpg" width="80px"><br></cfif><strong>#aVideo[1].title#</strong><br>[<a href="?e=#name#">edit</a>] [<a href="?d=#name#">delete</a>]
-							</li>
+                            <cftry>
+                                <cfset aVideo = videoData.get(name) />
+                                <li>
+                                    <cfif FileExists(ExpandPath("../data/videos/#name#/thumbnails/large.jpg"))><img src="../data/videos/#name#/thumbnails/large.jpg" width="80px"><br></cfif><strong>#aVideo[1].title#</strong><br>[<a href="?e=#name#">edit</a>] [<a href="?d=#name#">delete</a>]
+                                </li>
+                                <cfcatch>
+                                    <cflog application="true" log="Application" type="error" text="#cfcatch.message#" />
+                                </cfcatch>
+                            </cftry>
 						</cfloop>
 					</ul>
 				</div>

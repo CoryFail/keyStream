@@ -39,25 +39,33 @@ along with keyStream.  If not, see <http://www.gnu.org/licenses/>.
 				<cfif qVideos.recordCount GT "0">
 					<ul id="thumbs">
 						<cfloop query="qVideos" endrow="20">
-							<cfset aVideo = videoData.get(name) />
-							<cfif (ratings.GETid(aVideo[1].rating) LTE ratings.GETid(SESSION.defaultRatingLimit)) OR  (SESSION.User.ID EQ 1)>
-								<cfset catReplace = Replace(aVideo[1].category, " ", "_") />
-								<li class="col4 item #catReplace#">
-									<!--- need blank image --->
-									<img src="data/videos/#name#/thumbnails/large.jpg" alt="" />
-									<div class="col4 item-info">
-										<h3 class="title"><a href="video.cfm?v=#name#">#aVideo[1].title#</a></h3>
-									</div>
-									<div class="item-info-overlay">
-										<div>
-											<h4>#aVideo[1].category#</h4>	
-											<p>Rated #aVideo[1].rating#</p>
-											<p>#aVideo[1].description#</p>
-											<a href="video.cfm?v=#name#" class="view">details</a>
-										</div>					
-									</div>
-								</li>
-							</cfif>
+                            <cftry>
+                                <cfset aVideo = videoData.get(name) />
+                                <cfif (ratings.GETid(aVideo[1].rating) LTE ratings.GETid(SESSION.defaultRatingLimit)) OR  (SESSION.User.ID EQ 1)>
+                                    <cfset catReplace = Replace(aVideo[1].category, " ", "_") />
+                                    <li class="col4 item #catReplace#">
+                                        <cfif FileExists("data/videos/#name#/thumbnails/large.jpg")>
+                                            <img src="data/videos/#name#/thumbnails/large.jpg" alt="" />
+                                        <cfelse>
+                                            <img src="assets/images/default-video.jpg" alt="" />
+                                        </cfif>
+                                        <div class="col4 item-info">
+                                            <h3 class="title"><a href="video.cfm?v=#name#">#aVideo[1].title#</a></h3>
+                                        </div>
+                                        <div class="item-info-overlay">
+                                            <div>
+                                                <h4>#aVideo[1].category#</h4>	
+                                                <p>Rated #aVideo[1].rating#</p>
+                                                <p>#aVideo[1].description#</p>
+                                                <a href="video.cfm?v=#name#" class="view">details</a>
+                                            </div>					
+                                        </div>
+                                    </li>
+                                </cfif>
+                                <cfcatch>
+                                    <cflog application="true" log="Application" type="error" text="#cfcatch.message#" />
+                                </cfcatch>
+                            </cftry>
 						</cfloop>
 					</ul>
 				<cfelse>
