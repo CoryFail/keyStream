@@ -30,7 +30,7 @@ along with keyStream.  If not, see <http://www.gnu.org/licenses/>.
 			
 			<cfif qUploads.recordCount GT "0">
 				<div style="margin-top:-20px;margin-bottom:20px;">
-					<strong>You have #qUploads.recordCount# videos in the uploads queue. <a href="index.cfm?u=true">Upload them now.</a></strong>
+					<strong class="highlight3">You have #qUploads.recordCount# videos in the uploads queue. <a href="index.cfm?u=true">Upload them now.</a></strong>
 				</div>
 			</cfif>
 			

@@ -22,31 +22,35 @@ along with keyStream.  If not, see <http://www.gnu.org/licenses/>.
         <cfloop query="qUploads">
             <cfset var videoName = "video_" & RandRange(0, 999999) />
             <cfset fileExtension = ListLast(name, ".") />
-            <!--- let's create the file structure --->
-            <cfif NOT DirectoryExists("#application.uploadsDirectory##videoName#")>
-                <cfset DirectoryCreate("#application.uploadsDirectory##videoName#") />
-                <cfset DirectoryCreate("#application.uploadsDirectory##videoName#/thumbnails") />
+            <cfif ListFindNoCase("MOV,AVI,MP4,MPEG,WMV,RM,MPG,OGG,3GP,WebM", fileExtension) GT 0>
+                <!--- let's create the file structure --->
+                <cfif NOT DirectoryExists("#application.uploadsDirectory##videoName#")>
+                    <cfset DirectoryCreate("#application.uploadsDirectory##videoName#") />
+                    <cfset DirectoryCreate("#application.uploadsDirectory##videoName#/thumbnails") />
+                </cfif>
+
+                <!--- Save the file to the uploads directory. --->
+                <cffile	action="move" source="#application.rootDirectory#uploads/#name#" destination="#application.uploadsDirectory##videoName#/#name#" />
+                <cffile action="rename"	source="#application.uploadsDirectory##videoName#/#name#" destination="#application.uploadsDirectory##videoName#/video.#fileExtension#" />
+
+                <!--- create the data file --->
+                <cfset var newFileName = "video." & fileExtension />
+                <cfset var settingsValues =	[
+                        {
+                            fileName = newFileName,
+                            originalFileName = name,
+                            dateCreated = now(),
+                            category = "Uncategorized",
+                            categoryGenre = "Uncategorized",
+                            title = name,
+                            description = "There is no description added yet.",
+                            rating = "G"
+                        }
+                ] />
+                <cffile action="write" file="#application.uploadsDirectory##videoName#/data.json" output="#SerializeJSON(settingsValues)#" mode="777" />
+            <cfelse>
+                <cffile action="delete" file="#application.rootDirectory#/uploads/#name#" />
             </cfif>
-
-            <!--- Save the file to the uploads directory. --->
-            <cffile	action="move" source="#application.rootDirectory#uploads/#name#" destination="#application.uploadsDirectory##videoName#/#name#" />
-            <cffile action="rename"	source="#application.uploadsDirectory##videoName#/#name#" destination="#application.uploadsDirectory##videoName#/video.#fileExtension#" />
-
-            <!--- create the data file --->
-            <cfset var newFileName = "video." & fileExtension />
-            <cfset var settingsValues =	[
-                    {
-                        fileName = newFileName,
-                        originalFileName = name,
-                        dateCreated = now(),
-                        category = "Uncategorized",
-                        categoryGenre = "Uncategorized",
-                        title = name,
-                        description = "There is no description added yet.",
-                        rating = "G"
-                    }
-            ] />
-            <cffile action="write" file="#application.uploadsDirectory##videoName#/data.json" output="#SerializeJSON(settingsValues)#" mode="777" />
         </cfloop>
         
 		<cfreturn true />
