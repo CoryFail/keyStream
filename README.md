@@ -34,6 +34,10 @@ Installation
 
 Install Railo to your home network and upload this application to the web directory. Point your browser to the applications index and it will install the data and upload folder.
 
+(Optional) To make uploading automated make a Scheduled Task in Railo and point it to: [Your URL]:8888/func/uploads.cfc?method=put
+
+Note: For users installing it with one of the automatic installers, please use the instructions provided at: http://keystream.co
+
 Default Login:
 
 Username: admin
@@ -53,14 +57,19 @@ Commercial Users
 
 This application is meant for home networks, the open source keyStream is does not have the best security for commercial use. I am working on a closed source solution specifically for commerical users. If you do decide to apply this to a commercial network, please use caution.
 
-To do
+Community
 =========
 
-keyStream is now under very early release. There are still things that need to be completed.
+keyStream uses Google Groups for release information and other great information within the keyStream community. The groups email URL is: https://groups.google.com/forum/#!forum/keystream
 
-- Default image when there is none uploaded.
-- Restrict file types to videos with upload folder uploader.
-- Enhance UX.
-- Add version info xml.
-- Add error handling to library and admin video list.
-- Add error handling to video delete.
+Version
+=========
+
+You are currently using version v1.0 of keyStream
+
+Copyright / License
+=========
+
+Cory Fail © Copyright 2014. All Rights Reserved.
+
+For license information please read the LICENSE file included in keyStream's root directory.
