@@ -62,3 +62,5 @@ keyStream is now under very early release. There are still things that need to b
 - Restrict file types to videos with upload folder uploader.
 - Enhance UX.
 - Add version info xml.
+- Add error handling to library and admin video list.
+- Add error handling to video delete.
