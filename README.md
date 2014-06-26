@@ -62,12 +62,10 @@ Community
 
 keyStream uses Google Groups for release information and other great information within the keyStream community. The groups email URL is: https://groups.google.com/forum/#!forum/keystream
 
-Version / Change Log
+Version
 =========
 
-You are currently using version v1.0.1 of keyStream
-
-- Increased requesttimeout time to 300 seconds.
+You are currently using version v1.0 of keyStream
 
 Copyright / License
 =========
