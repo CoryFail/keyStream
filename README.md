@@ -65,7 +65,9 @@ keyStream uses Google Groups for release information and other great information
 Version
 =========
 
-You are currently using version v1.0 of keyStream
+You are currently using version v1.0.1 of keyStream
+
+- Increased requesttimeout time to 300 seconds.
 
 Copyright / License
 =========
