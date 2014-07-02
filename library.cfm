@@ -43,8 +43,12 @@ along with keyStream.  If not, see <http://www.gnu.org/licenses/>.
                             <cftry> 
                                 <cfset aVideo = videoData.get(video) />
                                 <li class="col4 item #aVideo[1].categoryGenre#">
-                                    <!--- need blank image --->
-                                    <img src="data/videos/#video#/thumbnails/large.jpg" alt="" />
+                                     <cfif FileExists("data/videos/#video#/thumbnails/large.jpg")>
+                                        <img src="data/videos/#video#/thumbnails/large.jpg" alt="" />
+                                    <cfelse>
+                                        <img src="assets/images/default-video.jpg" alt="" />
+                                    </cfif>
+                                    <img src="" alt="" />
                                     <div class="col4 item-info">
                                         <h3 class="title"><a href="video.cfm?v=#video#">#aVideo[1].title#</a></h3>
                                     </div>
@@ -52,7 +56,7 @@ along with keyStream.  If not, see <http://www.gnu.org/licenses/>.
                                         <div>
                                             <h4>#aVideo[1].categoryGenre#</h4>	
                                             <p>Rated #aVideo[1].rating#</p>
-                                            <p>#aVideo[1].description#</p>
+                                            <p>#Left(aVideo[1].description, 120)#...</p>
                                             <a href="video.cfm?v=#video#" class="view">details</a>
                                         </div>					
                                     </div>
