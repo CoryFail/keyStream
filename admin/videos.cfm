@@ -167,7 +167,7 @@ along with keyStream.  If not, see <http://www.gnu.org/licenses/>.
 				</div>
 				<div class="one-half last">
 					<h1 class="title">Add New Video</h1>
-					<form action="../func/uploads.cfc?method=post" enctype="multipart/form-data" method="POST" name="uploadVideo">
+					<form action="upload_files.cfm" enctype="multipart/form-data" method="POST" name="uploadVideo">
 						Title<br><input type="text" name="videoTitle" style="width:220px;"><br><br>
 						<input type="file" name="file" style="width:220px;"><br><br>
 						<input type="submit" name="submit_upload" value="Upload Video">

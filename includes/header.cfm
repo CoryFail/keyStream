@@ -14,7 +14,7 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with keyStream.  If not, see <http://www.gnu.org/licenses/>.
 --->
-<cfparam name="URL.c" default="" />
+
 <cfset var categories = createobject("component","func.categories") />
 <cfoutput>
 	<!DOCTYPE html>
@@ -73,10 +73,10 @@ along with keyStream.  If not, see <http://www.gnu.org/licenses/>.
 					</div>
 					<div id="primary-menu">
 						<ul class="menu">
-							<li><a href="index.cfm" <cfif URL.c EQ "">class="current"</cfif>>Home#CGI.PATH_INFO#</a></li>
+							<li><a href="index.cfm" class="current">Home</a></li>
 							<!-- grab from category array -->
-							<cfloop collection="#categories.get()#"  item="category">
-								<li><a href="library.cfm?c=#category#" <cfif URL.c EQ category>class="current"</cfif>>#replace(category, "_", " ")#</a>		
+							<cfloop collection="#categories.get()#" item="category">
+								<li><a href="library.cfm?c=#category#">#replace(category, "_", " ")#</a>		
 									<ul>
 										<cfloop list="#ListSort(categories.get()[category], "Text")#" index="genre">
 											<li><a href="library.cfm?c=#category#&g=#urlencodedformat(genre)#">#genre#</a></li>

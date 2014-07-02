@@ -56,7 +56,7 @@ along with keyStream.  If not, see <http://www.gnu.org/licenses/>.
                                             <div>
                                                 <h4>#aVideo[1].category#</h4>	
                                                 <p>Rated #aVideo[1].rating#</p>
-                                                <p>#Left(aVideo[1].description, 120)#...</p>
+                                                <p>#aVideo[1].description#</p>
                                                 <a href="video.cfm?v=#name#" class="view">details</a>
                                             </div>					
                                         </div>
