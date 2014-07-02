@@ -1,4 +1,4 @@
-<!---
+﻿<!---
 This file is part of keyStream.
 
 keyStream is free software: you can redistribute it and/or modify
@@ -67,7 +67,18 @@ Version
 
 You are currently using version v1.0.1 of keyStream
 
-- Increased requesttimeout time to 300 seconds.
+- Increased requestTimeout time to 300 seconds
+- Add FLV to supported video files
+- Only three images showing on home page 
+- Default image for library not showing 
+- Add error handling to upload_files.cfm 
+- Make upload_files.cfm a function 
+- Limit quick upload size 
+- Decrease description text in library 
+- Increase timeout 
+- Navigation Highlight enhancement
+
+
 
 Copyright / License
 =========

@@ -26,7 +26,7 @@ along with keyStream.  If not, see <http://www.gnu.org/licenses/>.
 	
 	<cfset settings = createobject("component","func.settings") />
 	
-	<cfsetting showdebugoutput="false" requesttimeout="300" />
+	<cfsetting showdebugoutput="false" requesttimeout="10" />
 
 
 	<cffunction name="OnApplicationStart" access="public" returntype="boolean" output="false" hint="I run when the application boots up. If I return false, the application initialization will hault.">
