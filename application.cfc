@@ -1,108 +1,66 @@
-<!---
-This file is part of keyStream.
+component name="test" output="true"{
+   
+    this.name = "keyStream";
+    this.applicationTimeout = createTimeSpan(0, 1, 0, 0);       
+    this.clientManagement = false;
+    this.datasources["keystream"] = { class: 'org.sqlite.JDBC' , connectionString: 'jdbc:sqlite:webapps/ROOT/data/keystream.db' };
+    this.datasource = "keystream";
+    this.loginStorage = "cookie";
+    this.serverSideFormValidation = true;
+    this.sessionManagement  = true;
+    this.sessionTimeout = createTimeSpan(0, 0, 30, 0);
+    this.setClientCookies = true;
+    this.setDomainCookies  = false;
+    this.scriptProtect  = false;
+     
+    public boolean function OnApplicationStart(){
+        //Handle OnApplicationStart Callback
+        
+        application.utils = createobject("component","components.utils");
 
-keyStream is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
+        application.rootDirectory = getDirectoryFromPath(getCurrentTemplatePath());  
 
-keyStream is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
+        var settings = createobject("component","components.settings");
+        application.settings.currentVersion = settings.get()[1].currentVersion;
+        application.settings.defaultRatingID = settings.get()[1].defaultRatingID;
 
-You should have received a copy of the GNU General Public License
-along with keyStream.  If not, see <http://www.gnu.org/licenses/>.
---->
+        if(settings.get()[1].videoPath GT "") {
+            application.settings.videoPath = settings.get()[1].videoPath;
+        }
+        else {
+            application.settings.videoPath = expandPath("data/videos/");
+        }
 
-<cfcomponent output="false" hint="I define the application and root-level event handlers.">
-
-
-	<cfset THIS.name="keyStream" />
-	<cfset THIS.applicationTimeout = CreateTimeSpan( 0, 0, 5, 0 ) />
-	<cfset THIS.sessionManagement = true />
-	<cfset THIS.sessionTimeout = CreateTimeSpan( 0, 0, 0, 20 ) />
-	<cfset THIS.setClientCookies = true />
-	
-	<cfset settings = createobject("component","func.settings") />
-	
-	<cfsetting showdebugoutput="false" requesttimeout="10" />
-
-
-	<cffunction name="OnApplicationStart" access="public" returntype="boolean" output="false" hint="I run when the application boots up. If I return false, the application initialization will hault.">
-		
-		<cfset APPLICATION.rootDirectory = getDirectoryFromPath( getCurrentTemplatePath() ) />
-
-		<cfset APPLICATION.uploadsDirectory = (APPLICATION.rootDirectory & "data/videos/")  />
-
-		<cfset APPLICATION.encryptionKey="m0Vi3sR0x" />
-		
-		<cfif (NOT FileExists(APPLICATION.rootDirectory & "data/settings.json")) OR (NOT DirectoryExists(APPLICATION.rootDirectory & "data/"))>
-			<cfset settings.POST() />
-		</cfif>
-		
-		<cfreturn true />
-	</cffunction>
-
-
-	<cffunction name="OnSessionStart" access="public" returntype="void" output="false" hint="I run when a session boots up.">
-		
-		<cfset var LOCAL = { } />
-
-		<cfset LOCAL.CFID = SESSION.CFID />
-		<cfset LOCAL.CFTOKEN = SESSION.CFTOKEN />
-
-		<cfset StructClear( SESSION ) />
-
-
-		<cfset SESSION.CFID = LOCAL.CFID />
-		<cfset SESSION.CFTOKEN = LOCAL.CFTOKEN />
-
-		<cfset SESSION.User = { ID=0 , DateCreated= Now() } />
-
-		<cftry>
-
-			<cfset LOCAL.RememberMe = Decrypt( COOKIE.rememberMe, APPLICATION.encryptionKey, "cfmx_compat", "hex" ) />
-			<cfset LOCAL.RememberMe = ListGetAt( LOCAL.rememberMe, 2, ":" ) />
-
-			<cfif IsNumeric( LOCAL.rememberMe )>
-
-				<cfset SESSION.user.id = LOCAL.rememberMe />
-
-			</cfif>
-
-			<cfcatch></cfcatch>
-		</cftry>
-		
-		<!--- let's grab the settings --->
-		<cfset SESSION.adminUser = settings.get()[1].adminUser />
-		<cfset SESSION.adminPassword = settings.get()[1].adminPassword />
-		<cfset SESSION.defaultRatingLimit = settings.get()[1].defaultRatingLimit />
-		
-		<cfreturn />
-	</cffunction>
-
-
-	<cffunction name="OnRequestStart" access="public" returntype="boolean" output="false" hint="I perform pre page processing. If I return false, I hault the rest of the page from processing.">
-
-
-		<cfif StructKeyExists( URL, "reset" )>
-
-			<cfset THIS.onApplicationStart() />
-			<cfset THIS.onSessionStart() />
-
-		</cfif>
-
-		<cfreturn true />
-	</cffunction>
-
-
-	<cffunction name="OnRequest" access="public" returntype="void" output="true" hint="I execute the primary template.">
-
-		<cfargument name="Page" type="string" required="true" hint="The page template requested by the user." />
-		<cfinclude template="#ARGUMENTS.page#" />
-
-		<cfreturn />
-	</cffunction>
-
-</cfcomponent>
+        return true;
+    }
+    public void function OnApplicationEnd(struct ApplicationScope=structNew()){
+        //Handle OnApplicationEnd Callback
+    }
+    public void function OnRequest(required string TargetPage){
+        //Handle OnRequest Callback
+    }
+    public boolean function OnRequestStart(required string TargetPage){
+        //Handle OnRequestStart Callback
+        include arguments.TargetPage;                           
+        return true;
+    }
+    public void function OnRequestEnd(){
+        //Handle OnRequestEnd Callback
+    }
+    public void function OnCFCRequest(string cfc, string method, struct args){
+        //Handle OnCFCRequest Callback
+    }
+    public void function OnSessionStart(){
+        
+        //Handle OnSessionStart Callback
+    }
+    public void function OnSessionEnd(required struct SessionScope, struct ApplicationScope=structNew()){
+        //Handle OnSessionEnd Callback
+    }
+    
+    public boolean function OnMissingTemplate(required string TargetPage){
+        //Handle OnMissingTemplate Callback
+        return true;
+    }
+    
+}

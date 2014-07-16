@@ -1,94 +1,62 @@
-<!---
-This file is part of keyStream.
+<!DOCTYPE html>
+<html>
+<head>
+	<title>keyStream</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" type="text/css" href="../assets/css/bootstrap.min.css">
+	<link type="text/css" rel="stylesheet" href="../assets/css/global.css" />
+	<link type="text/css" rel="stylesheet" href="../assets/css/color-button.css" />
+	<!-- js Boots_from -->
+	<script src="../assets/js/jquery.js"></script>
+    <script src="../assets/js/bootstrap.min.js"></script>
+    <script src="../assets/js/custom.js"></script>
+	<!-- end Boots_from -->
+</head>
 
-keyStream is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
+<body data-spy="scroll" data-target=".subnav" data-offset="50" data-twttr-rendered="true">
 
-keyStream is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
+<div class="navbar navbar-fixed-top">
+	<div class="navbar-inner">
+		<div class="container">
+			<a class="brand" href="#">
+				<span>key</span><span class="cl-blue">Stream</span>
+			</a>
+			<div class="nav-collapse">
+				<ul class="nav pull-right">
+              		<li><a href="index.html">Home</a></li>
+              		<li><a href="blog.html">Blog</a></li>
+              		<li><a href="element.html">Element</a></li>
+              		<li><a href="detail.html">Detail</a></li>
+              		<li><a href="pricing-plans.html">Pricing Plans</a></li>
+					<li><a href="grid-layout.html">Grid Layout</a></li>
 
-You should have received a copy of the GNU General Public License
-along with keyStream.  If not, see <http://www.gnu.org/licenses/>.
---->
-<cfparam name="URL.c" default="" />
-<cfset var categories = createobject("component","func.categories") />
-<cfoutput>
-	<!DOCTYPE html>
-	<html xmlns="http://www.w3.org/1999/xhtml">
-		<head>
-			<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-			<meta name="viewport" content="initial-scale=1, maximum-scale=1" />
-			<meta name="viewport" content="width=device-width" />
-			<title>keyStream - The open source personal media server.</title>
+              		<li class="divider-vertical"></li>
 
-			<link rel="stylesheet" type="text/css" href="assets/css/style.css" media="screen" />
-			<link rel="stylesheet" type="text/css" href="assets/css/blog.css" media="screen" />
-			<link rel="stylesheet" type="text/css" href="assets/css/socialize-bookmarks.css" media="screen" />
-			<link rel="stylesheet" type="text/css" href="assets/css/oswald.css" />
-			<link rel="stylesheet" type="text/css" href="assets/css/video-js.css" />
-
-			<script type="text/javascript" src="assets/javascript/jquery.min.js"></script>
-			<script type="text/javascript" src="assets/javascript/custom.js"></script>
-			<script type="text/javascript" src="assets/javascript/video.js"></script>
-			<script type="text/javascript" src="assets/javascript/header.js"></script>
-			<script type="text/javascript" src="assets/javascript/twitter.js"></script>
-
-			<!-- PrettyPhoto --> 
-			<link rel="stylesheet" href="assets/css/prettyPhoto.css" type="text/css" media="screen" />
-			<script type="text/javascript" src="assets/javascript/prettyPhoto.js"></script>	
-
-			<!-- Photostream Javascript --> 
-			<script type="text/javascript" src="assets/javascript/bra.photostream.js"></script>
-
-			<!-- Flexslider JavaScript Files -->	
-			<script type="text/javascript" src="assets/javascript/jquery.flexslider.js"></script>
-			<link rel="stylesheet" href="assets/css/flexslider.css" type="text/css" media="screen" />	
-
-			<!-- Masonry Javascript File --> 
-			<script type="text/javascript" src="assets/javascript/jquery.isotope.min.js"></script>	
-			
-			<script>
-		   		videojs.options.flash.swf = "assets/swf/video-js.swf";
-		  	</script>
-			<style>
-				.* {max-width: 100%} /* the usual RWD shebang */
-
-				.video-js {
-				    width: auto !important; /* override the plugin's inline dims to let vids scale fluidly */
-				    height: auto !important;
-				}
-				
-				.video-js video {position: relative !important;}
-			</style>
-		</head>
-		<body id="top">
-			<div id="header-wrapper">
-				<div class="header clear">
-					<div id="logo">	
-						<a href="index.cfm"><img src="assets/images/logo.png" alt="" /></a>		
-					</div>
-					<div id="primary-menu">
-						<ul class="menu">
-							<li><a href="index.cfm" <cfif URL.c EQ "">class="current"</cfif>>Home#CGI.PATH_INFO#</a></li>
-							<!-- grab from category array -->
-							<cfloop collection="#categories.get()#"  item="category">
-								<li><a href="library.cfm?c=#category#" <cfif URL.c EQ category>class="current"</cfif>>#replace(category, "_", " ")#</a>		
-									<ul>
-										<cfloop list="#ListSort(categories.get()[category], "Text")#" index="genre">
-											<li><a href="library.cfm?c=#category#&g=#urlencodedformat(genre)#">#genre#</a></li>
-										</cfloop>
-									</ul>
-								</li>
-							</cfloop>
-							<cfif SESSION.user.id EQ 1>
-								<li><a href="admin/index.cfm">Dashboard</a></li>
-							</cfif>
+              		<li class="avatar_small"><a href="account.html"></a></li>
+            		<li class="dropdown">
+            			<a class="dropdown-toggle" href="#" data-toggle="dropdown">
+	            			john doe
+	            			<b class="caret"></b>
+            			</a>
+            			<ul class="dropdown-menu">
+							<li>
+								<a href="profile.html">
+									<i class="icon-user"></i>
+									Account Setting  </a>
+							</li>
+							<li>
+								<a href="setting.html">
+									<i class="icon-lock"></i> Change Password</a>
+							</li>
+							<li class="divider"></li>
+							<li>
+								<a href="login.html"><i class="icon-off"></i> Logout</a>
+							</li>
 						</ul>
-					</div>
-				</div>
+            		</li>
+            	</ul>
 			</div>
-</cfoutput>
+		</div>
+	</div>
+</div>
+<!-- end navbar -->

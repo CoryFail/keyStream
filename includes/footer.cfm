@@ -1,34 +1,41 @@
-<!---
-This file is part of keyStream.
-
-keyStream is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
-
-keyStream is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with keyStream.  If not, see <http://www.gnu.org/licenses/>.
---->
-		<div id="footer">
-			<div id="footer-bottom" class="clear">
-				<div class="one-half">
-					<p>Copyright &copy; 2014 <a href="http://coryfail.com" target="_blank">Cory Fail</a>. All rights reserved.</p>
-				</div>
-				<div class="one-half text-align-right last">
-					<cfif SESSION.user.id EQ 1>
-						<p><a href="logout.cfm">Logout</a>
-						</p>
-						<cfelse>
-							<p><a href="login.cfm">Login</a>
-							</p>
-					</cfif>
-				</div>
+<div class="footer">
+	<div class="container">
+		<div class="row">
+			<div class="span6 logo-vt">
+				<a class="brand" href="#">
+					<span>key</span><span class="cl-blue">Stream</span>
+				</a>
+				<span class="coppy_right">
+					<p>Lorem ipsum dolor sit </p>
+					<p>@2012 All Rights Reserved.</p>
+				</span>
+			</div>
+			<div class="span2">
+				<ul class="nav nav-list">
+					<li class="nav-header">Contact</li>
+					<li><a href="#">Support</a></li>
+					<li><a href="#">About</a></li>
+					<li>84.903.197.895</li>
+				</ul>
+			</div>
+			<div class="span2">
+				<ul class="nav nav-list">
+					<li class="nav-header">Blog</li>
+					<li><a href="#">Regulation</a></li>
+					<li><a href="#">Blog</a></li>
+				</ul>
+			</div>
+			<div class="span2">
+				<ul class="nav nav-list">
+					<li class="nav-header">Follow Us</li>
+					<li><a href="#"><i class="twitter"></i>Twitter</a></li>
+					<li><a href="#"><i class="facebook"></i>Facebook</a></li>
+					<li><a href="#"><i class="dd"></i>Forum</a></li>
+				</ul>
 			</div>
 		</div>
-	</body>
-</html>
+	</div>
+</div>
+</body>
+</html>   
+<!-- end footer -->
