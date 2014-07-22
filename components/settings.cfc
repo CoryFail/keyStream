@@ -17,7 +17,18 @@ component name="settings" output="true"{
         querySettings.setSQL("
             update settings set videoPath = :videoPath, defaultRatingID = :defaultRatingID, currentVersion = :currentVersion
         ");
+        querySettings.addParam(name="videoPath",value=arguments.videoPath,cfsqltype="VARCHAR");
+        querySettings.addParam(name="defaultRatingID",value=arguments.defaultRatingID,cfsqltype="INT");
+        querySettings.addParam(name="currentVersion",value=arguments.currentVersion,cfsqltype="VARCHAR");
         return querySettings.execute().getResult();
     }
+
+    public function remote(){
+        // try and ctach this to determine internet connection
+        http method="GET" url="http://keystream.co/remote/versionOutput.xml" result="webPage";
+        var parse = xmlParse(webPage.filecontent);
+        return parse.xmlRoot.xmlChildren[1].xmlChildren;
+    }
+
 
 }

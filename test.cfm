@@ -1,4 +1,5 @@
 <CFSCRIPT>
-    test = createobject("component","components.user");
-    test.post("Bob", "Password", 1, 1);
+    http method="GET" url="http://keystream.co/remote/versionOutput.xml" result="webPage";
+    parse = xmlParse(webPage.filecontent);
+    writedump(parse.xmlRoot.xmlChildren[1].xmlChildren);
 </CFSCRIPT>

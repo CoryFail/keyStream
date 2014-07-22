@@ -5,13 +5,9 @@ component name="test" output="true"{
     this.clientManagement = false;
     this.datasources["keystream"] = { class: 'org.sqlite.JDBC' , connectionString: 'jdbc:sqlite:webapps/ROOT/data/keystream.db' };
     this.datasource = "keystream";
-    this.loginStorage = "cookie";
-    this.serverSideFormValidation = true;
     this.sessionManagement  = true;
     this.sessionTimeout = createTimeSpan(0, 0, 30, 0);
     this.setClientCookies = true;
-    this.setDomainCookies  = false;
-    this.scriptProtect  = false;
      
     public boolean function OnApplicationStart(){
         //Handle OnApplicationStart Callback
@@ -33,34 +29,15 @@ component name="test" output="true"{
 
         return true;
     }
-    public void function OnApplicationEnd(struct ApplicationScope=structNew()){
-        //Handle OnApplicationEnd Callback
-    }
-    public void function OnRequest(required string TargetPage){
-        //Handle OnRequest Callback
-    }
-    public boolean function OnRequestStart(required string TargetPage){
-        //Handle OnRequestStart Callback
-        include arguments.TargetPage;                           
-        return true;
-    }
-    public void function OnRequestEnd(){
-        //Handle OnRequestEnd Callback
-    }
-    public void function OnCFCRequest(string cfc, string method, struct args){
-        //Handle OnCFCRequest Callback
-    }
     public void function OnSessionStart(){
-        
         //Handle OnSessionStart Callback
+        session.user.id = 0;
+        session.user.username = "Guest";
+        session.user.bAdmin = 0;
+        session.user.ratingLimitID = application.settings.defaultRatingID;
     }
     public void function OnSessionEnd(required struct SessionScope, struct ApplicationScope=structNew()){
         //Handle OnSessionEnd Callback
-    }
-    
-    public boolean function OnMissingTemplate(required string TargetPage){
-        //Handle OnMissingTemplate Callback
-        return true;
     }
     
 }

@@ -1,4 +1,7 @@
 <cfoutput>
+    <cfif session.user.bAdmin EQ 0>
+        <cflocation url="../login.cfm" addtoken="false" />
+    </cfif>
 	<!DOCTYPE html>
 	<html>
 	<head>
@@ -24,13 +27,7 @@
 				</a>
 				<div class="nav-collapse">
 					<ul class="nav pull-right">
-	              		<li><a href="index.html">Home</a></li>
-	              		<li><a href="blog.html">Blog</a></li>
-	              		<li><a href="element.html">Element</a></li>
-	              		<li><a href="detail.html">Detail</a></li>
-	              		<li><a href="pricing-plans.html">Pricing Plans</a></li>
-						<li><a href="grid-layout.html">Grid Layout</a></li>
-
+	              		<li><a href="../index.cfm">Home</a></li>
 	              		<li class="divider-vertical"></li>
 
 	              		
@@ -48,7 +45,8 @@
 								<cfif session.user.bAdmin EQ 1>
 									<li>
 										<a href="/admin">
-											<i class="icon-lock"></i> Admin Dashboard</a>
+											<i class="icon-lock"></i> Admin Dashboard
+                                        </a>
 									</li>
 								</cfif>
 								<li class="divider"></li>
