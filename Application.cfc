@@ -10,22 +10,25 @@ component name="test" output="true"{
     this.setClientCookies = true;
      
     public boolean function OnApplicationStart(){
-        //Handle OnApplicationStart Callback
-        
+
+        // create objects
         application.utils = createobject("component","components.utils");
-
-        application.rootDirectory = getDirectoryFromPath(getCurrentTemplatePath());  
-
         var settings = createobject("component","components.settings");
+        var update = createobject("component","components.update");
+
+        // set application variables
+        application.rootDirectory = getDirectoryFromPath(getCurrentTemplatePath());  
         application.settings.currentVersion = settings.get()[1].currentVersion;
         application.settings.defaultRatingID = settings.get()[1].defaultRatingID;
-
-        if(settings.get()[1].videoPath GT "") {
+        if(settings.get()[1].videoPath > "") {
             application.settings.videoPath = settings.get()[1].videoPath;
         }
         else {
             application.settings.videoPath = expandPath("data/videos/");
         }
+
+        // execute functions
+        update.get();
 
         return true;
     }
