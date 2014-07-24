@@ -20,7 +20,7 @@ component name="test" output="true"{
         application.rootDirectory = getDirectoryFromPath(getCurrentTemplatePath());  
         application.settings.currentVersion = settings.get()[1].currentVersion;
         application.settings.defaultRatingID = settings.get()[1].defaultRatingID;
-        if(settings.get()[1].videoPath > "") {
+        if(settings.get()[1].videoPath > ""){
             application.settings.videoPath = settings.get()[1].videoPath;
         }
         else {

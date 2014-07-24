@@ -1,8 +1,8 @@
 component name="user" output="true"{
 
-    public function get(numeric objectid = "") {
+    public function get(numeric objectid = 0) {
         var queryUser = new query();
-        var hasParams = len(arguments.objectid) && isNumeric(arguments.objectid);
+        var hasParams = arguments.objectid > 0;
         var sql = "select objectID, username, password, bAdmin, ratingLimitID, bActive from user";
         if(hasParams){
             sql = sql & " where objectid = :objectid";
@@ -15,7 +15,7 @@ component name="user" output="true"{
     }
 
     public function put(
-        numeric objectid = "", 
+        numeric objectid, 
         string username = get(arguments.objectid)[1].username,
         string password = get(arguments.objectid)[1].password,
         numeric bAdmin = get(arguments.objectid)[1].bAdmin,
