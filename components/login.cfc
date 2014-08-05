@@ -1,6 +1,6 @@
 component name="login" output="true"{
 
-    remote function get(string username, string password) {
+    remote function get(string username, string password){
         var saltTheHash = "tooManyTires";
     	var hashedPassword = hash(saltTheHash & trim(arguments.password), "SHA");
         var queryLogin = new query();

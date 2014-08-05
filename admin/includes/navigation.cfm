@@ -8,7 +8,7 @@
         <li class="active"><a href="index.cfm"><i class="icon-home"></i>Dashboard</a></li>
         <li><a href="##"><i class="icon-book"></i>Manage Videos</a></li>
         <li><a href="##"><i class="icon-book"></i>Manage Categories</a></li>
-        <li><a href="##"><i class="icon-book"></i>Manage Users</a></li>
+        <li><a href="user.cfm"><i class="icon-book"></i>Manage Users</a></li>
         <li><a href="##"><i class="icon-book"></i>Application Settings</a></li>
     </ul>
 </div><!-- end list-menu -->

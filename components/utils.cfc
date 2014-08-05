@@ -1,6 +1,6 @@
 component name="Utilities" output="true"{
 
-    array function QueryToArray(required query Data) {
+    array function QueryToArray(required query Data){
         var LOCAL = StructNew();
         LOCAL.Columns = ListToArray( ARGUMENTS.Data.ColumnList );
         LOCAL.QueryArray = ArrayNew( 1 );

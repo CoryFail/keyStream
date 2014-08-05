@@ -12,6 +12,8 @@
 		<link type="text/css" rel="stylesheet" href="../assets/css/color-button.css" />
 		<!-- js Boots_from -->
 		<script src="../assets/js/jquery.js"></script>
+		<script src="../assets/js/jquery.validate.min.js"></script>
+		<script src="../assets/js/jquery-ui.js"></script>
 	    <script src="../assets/js/bootstrap.min.js"></script>
 	    <script src="../assets/js/custom.js"></script>
 		<!-- end Boots_from -->

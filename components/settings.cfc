@@ -1,6 +1,6 @@
 component name="settings" output="true"{
 
-    public function get() {
+    public function get(){
         var querySettings = new query();
         querySettings.setSQL("
             select videoPath, defaultRatingID, currentVersion from settings

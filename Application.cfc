@@ -1,7 +1,7 @@
 component name="test" output="true"{
    
     this.name = "keyStream";
-    this.applicationTimeout = createTimeSpan(0, 1, 0, 0);       
+    this.applicationTimeout = createTimeSpan(5, 0, 0, 0);       
     this.clientManagement = false;
     this.datasources["keystream"] = { class: 'org.sqlite.JDBC' , connectionString: 'jdbc:sqlite:webapps/ROOT/data/keystream.db' };
     this.datasource = "keystream";
