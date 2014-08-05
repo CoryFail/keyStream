@@ -122,7 +122,6 @@
 							var activeStatus = obj.BACTIVE ? 'Yes' : 'No';
 							var deleteButton = '<a href="' + obj.OBJECTID + '" class="btn btn-red-s4 delete">Delete</a>';
 							var div_data= '<tr><td>' + obj.OBJECTID + '</td><td>' + '<a href="' + obj.OBJECTID + '" class="editUser">' + obj.USERNAME + '</a></td><td>' + obj.RATINGLIMIT + '</td><td>' + adminStatus + '</td><td>' + activeStatus +'</td><td>' + deleteButton + '</td></tr>';
-
 							$(div_data).appendTo('##userTableBody');
 						});
 					}
@@ -186,7 +185,7 @@
                     $("##passwordHelp").html("Password must be at least 5 charcters long.");
                     var error = true;
 		    	}
-		    	if(error == false){
+		    	if(!error){
 		    		$.ajax({
 						type: "POST",
 						url:"../components/user.cfc?method=POST",
@@ -212,7 +211,7 @@
                             username: query.term
                         },
                         success: function(result) {
-                            if(result == true){
+                            if(result){
                             	$("##usernameGroup").attr("class", "control-group error");
                             	$("##usernameHelp").html("Username is already taken.");
                             }
@@ -251,7 +250,7 @@
 							$("##passwordHelp").html("Leave blank to keep password the same.");
 							$('.nav-tabs a[href="##tab3"]').tab('show');
 
-							$(".form-horizontal").on("submit", function(e) { 
+							$("##editUserForm").on("submit", function(e) { 
 						    	e.preventDefault();
 						    	var username = $('##usernameInput').val();
 						    	var password = $('##passwordInput').val();
@@ -264,7 +263,7 @@
 				                    $("##usernameHelp").html("Username must be at least 3 charcters long.");
 				                    var error = true;
 						    	}
-						    	if(error == false){
+						    	if(!error){
 						    		$.ajax({
 										type: "PUT",
 										url:"../components/user.cfc?method=PUT",

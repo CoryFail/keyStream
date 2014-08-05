@@ -10,9 +10,9 @@
                         </div>
                         <form id="login_form" class="well">
                             <label>Username</label>
-                            <input type="text" id="username" class="input" placeholder="Type something…">
+                            <input type="text" id="username" class="input" placeholder="Type something...">
                             <label>Password</label>
-                            <input type="password" id="password" class="input" placeholder="Type something…">
+                            <input type="password" id="password" class="input" placeholder="Type something...">
                             <input type="submit" class="btn btn-info" value="Login">
                             <p class="sign-up-lg">Don't have an account? <a href="sign-up.html">Sign Up.</a></p>
                         </form>	
